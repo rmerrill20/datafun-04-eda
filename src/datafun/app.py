@@ -125,8 +125,8 @@ CATEGORICAL_COLUMNS: Final[list[str]] = [
 
 # === CHOOSE ONE RELATIONSHIP TO EXPLORE ===
 
-X_COLUMN: Final[str] = "flipper_length_mm"
-Y_COLUMN: Final[str] = "body_mass_g"
+X_COLUMN: Final[str] = "bill_length_mm"
+Y_COLUMN: Final[str] = "bill_depth_mm"
 
 
 # === DEFINE THE MAIN FUNCTION ===
@@ -266,7 +266,6 @@ def main() -> None:
     # Call the imported function get_correlation()
     # to compute the correlation between the two selected numeric variables.
     # Pass in the df, the x column, the y column, and the log.
-
     correlation: float = get_correlation(
         df=df,
         x=X_COLUMN,
@@ -287,13 +286,13 @@ def main() -> None:
     )
 
     # CUSTOM: Analyst must customize the Matplotlib Axes object with a title and axis labels.
-    relationship_ax.set_title("Penguin Flipper Length vs. Body Mass")
-    relationship_ax.set_xlabel("Flipper Length (mm)")
-    relationship_ax.set_ylabel("Body Mass (g)")
+    relationship_ax.set_title("Penguin Bill Length vs. Bill Depth")
+    relationship_ax.set_xlabel("Bill Length (mm)")
+    relationship_ax.set_ylabel("Bill Depth (mm)")
 
     save_chart(
         relationship_ax,
-        CHART_DIR / "one-relationship.png",
+        CHART_DIR / "bill-length-vs-bill-depth.png",
     )
 
     LOG.info("-------------------------------")
