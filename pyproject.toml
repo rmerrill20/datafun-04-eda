@@ -12,7 +12,7 @@
 # ============================================================
 
 [project]
-name = "Project Module 4" # CUSTOM: Package distribution name (use lowercase and dashes).
+name = "datafun-04-eda" # CUSTOM: Package distribution name (use lowercase and dashes).
 readme = "README.md"
 requires-python = ">=3.14"
 version = "1.1.0"
