@@ -296,7 +296,7 @@ def main() -> None:
     )
 
     # === CUSTOM: Color the scatter plot by species ===
-    fig, ax = plt.subplots()
+    _, ax = plt.subplots()
 
     species_list = df["species"].unique()
     colors = {"Adelie": "blue", "Chinstrap": "green", "Gentoo": "orange"}
