@@ -295,6 +295,32 @@ def main() -> None:
         CHART_DIR / "bill-length-vs-bill-depth.png",
     )
 
+    # === CUSTOM: Color the scatter plot by species ===
+    fig, ax = plt.subplots()
+
+    species_list = df["species"].unique()
+    colors = {"Adelie": "blue", "Chinstrap": "green", "Gentoo": "orange"}
+
+    for sp in species_list:
+        subset = df[df["species"] == sp]
+        ax.scatter(
+            subset["bill_length_mm"],
+            subset["bill_depth_mm"],
+            label=sp,
+            color=colors.get(sp, "gray"),
+            alpha=0.7,
+        )
+
+    ax.set_title("Penguin Bill Length vs. Bill Depth (Colored by Species)")
+    ax.set_xlabel("Bill Length (mm)")
+    ax.set_ylabel("Bill Depth (mm)")
+    ax.legend(title="Species")
+
+    save_chart(
+        ax,
+        CHART_DIR / "bill-length-vs-bill-depth-by-species.png",
+    )
+
     LOG.info("-------------------------------")
     LOG.info("07. SUMMARIZE what you found.")
     LOG.info("-------------------------------")
@@ -309,7 +335,7 @@ def main() -> None:
     Some observations (rows) are complete, but some are missing values.
 
     I reviewed the relationship between:
-    Flipper length vs. body mass
+    Bill length (mm) and Bill depth (mm) by species
     and it shows a positive relationship.
 
     Based on this EDA, I would next like to review additional
@@ -324,12 +350,16 @@ def main() -> None:
 
     # eda-vizkit just returns Matplotlib Axes objects.
     # The client (like this script or a marimo notebook),
-    # determines how and when to display the plots).
+    # determines how and when to display the plots.
 
     LOG.info("In a script, call plt.show() at the end to display all charts.")
     LOG.info("Close all chart windows (with the close button) to continue.")
 
     plt.show()
+
+
+if __name__ == "__main__":
+    main()
 
     LOG.info("===================================")
     LOG.info("END main() - Executed successfully!")
@@ -344,5 +374,4 @@ def main() -> None:
 # Python can reuse its definitions without automatically
 # running the entire analysis.
 
-if __name__ == "__main__":
-    main()
+
